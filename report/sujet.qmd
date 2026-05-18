@@ -1,0 +1,71 @@
+# 🎓 Projet Fil Rouge Data Science : "La Mobilité Urbaine Durable" {.unnumbered}
+
+### 📋 Le Sujet
+
+**Contexte :** Vous êtes mandaté par une grande métropole pour concevoir un pipeline complet d'analyse et de prédiction des flux de mobilité urbaine (vélos, transports en commun, trafic routier) croisés avec des données météorologiques et environnementales. L'objectif est d'aider les décideurs publics à optimiser les infrastructures et anticiper les pics de pollution.
+
+**Votre mission :** Rédiger un dossier complet documentant votre démarche "data" de bout en bout, de l'acquisition des données brutes jusqu'à la modélisation et la restitution visuelle. Le projet est jalonné en deux grandes étapes pour garantir la solidité des fondations analytiques avant le passage au Machine Learning.
+
+---
+
+### 📍 Jalon 1 : Audit, Nettoyage et Exploration (Évaluation Intermédiaire)
+
+1. **Acquisition & Data Wrangling (Chapitres 1 & 2) :**
+* Récupération et fusion de plusieurs jeux de données hétérogènes.
+* Nettoyage rigoureux : gestion des valeurs manquantes, détection et traitement des outliers, encodage et harmonisation.
+
+
+2. **Analyse Exploratoire (EDA) & Visualisation (Chapitres 3 & 4) :**
+* Statistiques descriptives et analyse des corrélations (ex: impact de la température sur la fréquentation des pistes cyclables).
+* Création de visualisations uni, bi et multidimensionnelles pour mettre en évidence les tendances spatiales et temporelles.
+
+
+
+**🛑 LIVRABLE JALON 1 :** Un premier rapport justifiant vos choix de préparation de la donnée et présentant un résumé visuel des 3 à 5 insights majeurs découverts lors de l'EDA.
+
+---
+
+### 📍 Jalon 2 : Modélisation et Restitution (Évaluation Finale)
+
+3. **Modélisation & Apprentissage (Chapitre 5) :**
+* **Analyse tabulaire :** Mise en place de modèles d'apprentissage (Supervisé ou Non Supervisé) pour segmenter les usagers ou prédire les niveaux de trafic.
+* **Vision par ordinateur :** Intégration d'une brique d'analyse d'images de caméras de trafic routier. *Note méthodologique : On privilégiera ici des architectures éprouvées basées sur TensorFlow et les réseaux de neurones convolutifs (CNN) pour extraire des features visuelles, plutôt que des approches génératives (LLM/VLM).*
+
+
+4. **Évaluation (Chapitre 6) :**
+* Choix justifié des métriques de performance et mise en place d'une validation croisée adaptée aux séries temporelles.
+
+
+5. **Data Storytelling & Communication (Chapitre 7) :**
+* Restitution des résultats finaux via des tableaux de bord et transparence quant aux limites de l'étude.
+
+
+
+**🛑 LIVRABLE JALON 2 :** Le dossier global finalisé, intégrant les retours du Jalon 1 et la nouvelle partie prédictive.
+
+---
+
+## ⚖️ Grille de Notation (Barème total sur 20)
+
+### 📊 Évaluation Jalon 1 - L'Exploration (sur 8 points)
+
+| Critère d'Évaluation | Indicateurs de Réussite | Points |
+| --- | --- | --- |
+| **Data Wrangling** | Propreté des manipulations Pandas, pertinence de l'imputation et de l'encodage. | /3 |
+| **Rigueur de l'EDA** | Profondeur de l'analyse, identification correcte des biais dans le jeu de données. | /3 |
+| **Pertinence Visuelle** | Lisibilité des graphiques, choix adaptés au type de données, axes et légendes clairs. | /2 |
+
+### 🧠 Évaluation Jalon 2 - La Prédiction (sur 12 points)
+
+| Critère d'Évaluation | Indicateurs de Réussite | Points |
+| --- | --- | --- |
+| **Architecture Modèle** | Split train/test pertinent, maîtrise technique des algorithmes (et des couches de convolution si traitement d'images). | /4 |
+| **Rigueur d'Évaluation** | Interprétation correcte des métriques d'erreur (RMSE, MAE, etc.) ou de classification. | /3 |
+| **Data Storytelling** | Capacité à vulgariser les résultats métier (dashboards interactifs/OJS). | /3 |
+| **Qualité Transverse** | Clarté des schémas d'architecture des flux de données (Mermaid) et précision du vocabulaire technique final. | /2 |
+
+## 🛠️ Livrables finaux attendus
+
+* Un **Document Quarto (.qmd)** compilé en PDF ou HTML interactif contenant l'ensemble du code, des textes et des visualisations.
+* Un **Schéma de pipeline Data** (illustrant le cycle de vie de la donnée, de la source brute à la prédiction).
+* Un code structuré et commenté de manière professionnelle.

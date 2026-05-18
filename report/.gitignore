@@ -1,0 +1,17 @@
+# Ignorer les rapports compilés (HTML et PDF)
+*.html
+*.pdf
+
+# Ignorer les répertoires auxiliaires de style (CSS, JS) et caches Quarto
+*_files/
+*_cache/
+.quarto/
+
+# Conserver les fichiers sources importants
+!rapport.qmd
+!sujet.qmd
+!references.bib
+!assets/
+
+# Conserver le fichier README.md
+!README.md

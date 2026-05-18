@@ -1,0 +1,32 @@
+# Cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Notebooks Jupyter
+.ipynb_checkpoints/
+
+# Environnements Virtuels
+venv/
+.venv/
+env/
+.env/
+
+# Données (ignorer les gros fichiers sauf notre dataset d'exemple brut)
+data/raw/*
+!data/raw/raw_sensor_traffic.csv
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Quarto & Rendu
+.quarto/
+*_files/
+*_cache/
+
+# Fichiers OS
+.DS_Store
+Thumbs.db
+
+*.pdf
+*.html

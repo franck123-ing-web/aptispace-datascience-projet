@@ -1,0 +1,32 @@
+version: '3'
+
+tasks:
+  default:
+    desc: Lance le rendu complet du rapport pour tous les formats (HTML, PDF, GFM README.md)
+    cmds:
+      - task: render
+
+  render:
+    desc: Rendu complet de rapport.qmd dans tous les formats déclarés
+    cmds:
+      - quarto render report/rapport.qmd
+
+  html:
+    desc: Compile le rapport au format HTML uniquement (cosmo theme)
+    cmds:
+      - quarto render report/rapport.qmd --to html
+
+  pdf:
+    desc: Compile le rapport au format PDF uniquement (avec table des matières)
+    cmds:
+      - quarto render report/rapport.qmd --to pdf
+
+  gfm:
+    desc: Compile le rapport en GFM (GitHub Flavored Markdown) et met à jour le README.md
+    cmds:
+      - quarto render report/rapport.qmd --to gfm
+
+  preview:
+    desc: Démarre le serveur Quarto de prévisualisation dynamique (live preview)
+    cmds:
+      - quarto preview report/rapport.qmd
