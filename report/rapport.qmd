@@ -1,11 +1,10 @@
 ---
-title: "Mon Projet Data Science"
-subtitle: "Projet Fil Rouge Data Science - Sujet Libre"
+title: "Prédiction du Prix des Maisons avec le Machine Learning"
+subtitle: "Projet Data Science — Analyse Immobilière et Modélisation Prédictive"
 author:
-  - "Étudiant(e) 1 : [Insérer Prénom Nom]"
-  - "Étudiant(e) 2 : [Insérer Prénom Nom]"
-  - "Étudiant(e) 3 : [Insérer Prénom Nom]"
+  - "Franck Joel"
 date: today
+
 format:
   html:
     theme: cosmo
@@ -15,200 +14,323 @@ format:
     code-fold: show
     code-tools: true
     highlight-style: github
+
   typst:
     toc: true
     number-sections: true
+
   gfm:
     output-file: "rapport.md"
     toc: true
     toc-depth: 2
+
 execute:
   eval: false
   echo: false
   warning: false
-bibliography: references.bib
+
 link-citations: true
 ---
 
-# Introduction et Contexte Métier {#sec-intro}
+# Introduction et Contexte Métier
 
-*À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.*
+L’immobilier représente aujourd’hui un secteur stratégique dans lequel les données jouent un rôle de plus en plus important.
 
-## Contexte du Projet
-*À rédiger par les étudiants — Pistes de réflexion :*
+L’estimation correcte du prix d’une maison est essentielle aussi bien pour les acheteurs que pour les vendeurs, les agences immobilières ou encore les banques.
 
-- *Quels sont les objectifs globaux et le domaine d'étude de votre projet ?*
-- *En quoi ce sujet de recherche est-il pertinent et stratégique ?*
-- *Pourquoi l'analyse quantitative de ce jeu de données est-elle indispensable pour répondre à votre problématique ?*
+Cependant, estimer précisément la valeur d’un bien immobilier peut être complexe car de nombreux facteurs influencent le prix final :
 
-[Rédiger votre paragraphe de contexte ici]
+- la surface habitable,
+- la qualité générale,
+- l’année de construction,
+- la présence d’un garage,
+- ou encore l’état global de la maison.
 
-## Objectif Analytique
-*À rédiger par les étudiants — Pistes de réflexion :*
+L’objectif de ce projet est donc de construire un pipeline complet de Data Science capable de prédire automatiquement le prix d’une maison à partir de ses caractéristiques.
 
-- *Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?*
-- *Comment le couplage de données multi-sources et l'intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l'analyse ?*
-- *Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?*
+Ce projet permet également d’appliquer plusieurs notions importantes du Machine Learning :
 
-[Rédiger votre paragraphe d'objectifs ici]
+- l’analyse exploratoire des données,
+- la visualisation,
+- le feature engineering,
+- la modélisation prédictive,
+- l’optimisation des modèles,
+- ainsi que l’explicabilité des résultats.
 
----
+# Objectif Analytique
 
-# Acquisition et Préparation des Données (Data Wrangling) {#sec-wrangling}
+La problématique principale de ce projet est une tâche de régression supervisée.
 
-Le succès de tout projet de Data Science repose sur la qualité de la préparation des données [@pandas2020]. Cette section documente l'audit de qualité et les étapes de nettoyage appliquées à vos jeux de données bruts.
+L’objectif consiste à prédire une variable numérique appelée :
 
-## Chapitre 1 : Acquisition Multi-Sources
-{{< include ../build/notebooks/01_acquisition.qmd >}}
+**SalePrice**
 
-## Chapitre 2 : Nettoyage et Préparation (Wrangling)
-{{< include ../build/notebooks/02_wrangling.qmd >}}
+qui correspond au prix de vente des maisons.
 
----
+Pour effectuer cette prédiction, plusieurs variables explicatives sont utilisées :
 
-# Visualisation Multidimensionnelle (Insights) {#sec-viz}
+- la surface habitable,
+- la qualité globale,
+- le nombre de garages,
+- la taille du sous-sol,
+- l’année de construction,
+- etc.
 
-Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs, en s'appuyant sur notre module `src/utils_viz.py`.
+Le projet vise également à :
 
-## Chapitre 3 : Travaux Pratiques d'Exploration Visuelle
-{{< include ../build/notebooks/03_visualisation.qmd >}}
-
----
-
-# Analyse Exploratoire des Données (EDA) {#sec-eda}
-
-Dans cette section, nous analysons les relations statistiques fondamentales qui régissent votre domaine d'étude au sein du jeu de données.
-
-## Chapitre 4 : Travaux Pratiques d'Exploration (EDA)
-{{< include ../build/notebooks/04_eda.qmd >}}
-
----
-
-# Modélisation et Apprentissage {#sec-modelling}
-
-Le pipeline complet intègre à la fois la branche analytique tabulaire (Machine Learning) et la branche d'analyse visuelle ou de signaux complexes (Deep Learning CNN) :
-
-```mermaid
-graph TD
-    A[Données Brutes Multi-Sources CSV/API] -->|Formatage & Alignement| B(data_clean.clean_dates)
-    C[Données Externes Complémentaires] -->|Imputation & Interpolation| D(data_clean.impute_missing_values)
-    B & D -->|Gestion Outliers| E[Jeu de données Propre & Fusionné]
-    E -->|Extraction Temporelle/Caractéristiques| F[Feature Engineering]
-    F -->|Splits Temporels ou Stratifiés| G[Modèle Machine Learning Tabulaire]
-    H[Flux Multimédias Réels Images/Signaux] -->|Prétraitement d'images/signaux| I[Réseau Convolutif CNN TensorFlow]
-    G -->|Prédictions de la Problématique Métier| J[Livrables & Aide à la Décision]
-    I -->|Détection de Motifs Complexes| J
-    
-    style E fill:#e0f2fe,stroke:#0284c7,stroke-width:2px
-    style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
-    style G fill:#fef3c7,stroke:#d97706,stroke-width:2px
-    style I fill:#fef3c7,stroke:#d97706,stroke-width:2px
-```
-
-## Chapitre 5 : Travaux Pratiques de Modélisation (ML & DL)
-{{< include ../build/notebooks/05_modelisation.qmd >}}
+- identifier les variables les plus importantes,
+- comparer plusieurs modèles de Machine Learning,
+- optimiser les performances,
+- et comprendre les décisions prises par le modèle final.
 
 ---
 
-# Évaluation Métrique et Validation {#sec-evaluation}
+# Acquisition et Préparation des Données (Data Wrangling)
 
-## Chapitre 6 : Travaux Pratiques d'Évaluation & Robustesse
-{{< include ../build/notebooks/06_evaluation.qmd >}}
+La qualité des données est une étape fondamentale dans tout projet de Data Science.
 
----
+Avant toute modélisation, il est nécessaire de :
 
-# Data Storytelling et Communication {#sec-storytelling}
+- télécharger les données,
+- vérifier leur structure,
+- analyser les valeurs manquantes,
+- et préparer correctement les variables.
 
-## Chapitre 7 : Travaux Pratiques de Storytelling
-{{< include ../build/notebooks/07_communication.qmd >}}
+Le dataset utilisé provient de Kaggle :
 
-## Présentation des Résultats (Livrables Interactifs)
+**House Prices — Advanced Regression Techniques**
 
-::: {.panel-tabset}
+Ce dataset contient des informations détaillées sur plusieurs maisons vendues aux États-Unis.
 
-### 📺 Diaporama de Soutenance (RevealJS)
-Ci-dessous est intégré le squelette de votre diaporama de soutenance RevealJS. Utilisez-le pour présenter votre démarche aux décideurs de façon professionnelle.
+## Chapitre 1 : Chargement du Dataset
 
-<iframe src="slides.html" width="100%" height="500px" style="border: 1px solid #e2e8f0; border-radius: 8px; background: white;"></iframe>
+Dans cette première étape, nous téléchargeons automatiquement le dataset Kaggle puis nous chargeons le fichier `train.csv` dans un DataFrame Pandas.
 
-### 📊 Exemple de Dashboard Dynamique (OJS / Plotly)
-::: {.content-visible unless-format="pdf"}
-Voici un exemple minimal de code montrant comment intégrer un graphique dynamique contrôlé par un composant d'interface utilisateur en Observable JS (OJS).
+Nous vérifions ensuite :
 
-```{ojs}
-//| echo: true
-// Boutons de sélection interactifs OJS
-viewof selectedCategory = Inputs.select(["Toutes", "A", "B", "C"], {value: "Toutes", label: "Filtrer par Catégorie :"})
-```
+- les dimensions du dataset,
+- les colonnes disponibles,
+- les premières lignes,
+- ainsi que les valeurs manquantes globales.
 
-```{ojs}
-//| echo: false
-// Données simulées réactives
-data = [
-  {timestamp: "2026-05-18T00:00:00Z", value: 10.5, category: "A"},
-  {timestamp: "2026-05-18T02:00:00Z", value: 12.1, category: "A"},
-  {timestamp: "2026-05-18T04:00:00Z", value: 14.7, category: "A"},
-  {timestamp: "2026-05-18T05:00:00Z", value: 15.2, category: "A"},
-  {timestamp: "2026-05-18T06:00:00Z", value: 16.0, category: "B"},
-  {timestamp: "2026-05-18T07:00:00Z", value: 18.3, category: "B"},
-  {timestamp: "2026-05-18T09:00:00Z", value: 21.5, category: "B"},
-  {timestamp: "2026-05-18T10:00:00Z", value: 22.0, category: "B"},
-  {timestamp: "2026-05-18T12:00:00Z", value: 25.4, category: "C"},
-  {timestamp: "2026-05-18T13:00:00Z", value: 26.1, category: "C"},
-  {timestamp: "2026-05-18T15:00:00Z", value: 28.9, category: "C"},
-  {timestamp: "2026-05-18T16:00:00Z", value: 30.2, category: "C"}
-]
+{{< include ../build/notebooks/01_dataset_loading.qmd >}}
 
-// Filtrage réactif de la donnée
-filteredData = selectedCategory === "Toutes" 
-  ? data 
-  : data.filter(d => d.category === selectedCategory)
+## Chapitre 2 : Analyse Exploratoire des Données (EDA)
 
-// Tracé interactif avec la librairie Plotly
-Plotly.newPlot('dynamic-chart', [{
-  x: filteredData.map(d => d.timestamp),
-  y: filteredData.map(d => d.value),
-  type: 'scatter',
-  mode: 'lines+markers',
-  marker: {color: '#1A73E8', size: 8},
-  line: {shape: 'spline', color: '#1A73E8', width: 3}
-}], {
-  title: 'Évolution Dynamique des Valeurs (Filtrée)',
-  margin: {t: 50, b: 50, l: 50, r: 50},
-  paper_bgcolor: 'rgba(0,0,0,0)',
-  plot_bgcolor: 'rgba(0,0,0,0)',
-  xaxis: {gridcolor: '#E5E7EB'},
-  yaxis: {gridcolor: '#E5E7EB'}
-})
-```
+L’analyse exploratoire permet de mieux comprendre les données avant la phase de modélisation.
 
-::: {#dynamic-chart style="width:100%; height:400px; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);"}
-:::
-:::
+Cette étape consiste à :
 
-:::
+- analyser les statistiques descriptives,
+- observer les distributions,
+- détecter les anomalies,
+- étudier les corrélations,
+- et identifier les variables importantes.
+
+Nous analysons également les valeurs manquantes présentes dans le dataset.
+
+{{< include ../build/notebooks/02_eda.qmd >}}
 
 ---
 
-# Utilisation de l'Intelligence Artificielle {#sec-ai}
+# Visualisation des Données
 
-Dans une démarche de transparence scientifique et académique, cette section détaille la manière dont les outils d'Intelligence Artificielle (IA) générative ont été intégrés tout au long de la réalisation de ce projet.
+La visualisation des données permet de transformer les données brutes en informations compréhensibles visuellement.
 
-## Cartographie de l'utilisation de l'IA
+Grâce aux graphiques, nous pouvons :
 
-| Outil d'IA | Cas d'usage (Pourquoi ?) | Méthode d'utilisation (Comment ?) | Rôle et Validation Humaine |
-| :--- | :--- | :--- | :--- |
-| **[Outil d'IA]** | *[À compléter par les étudiants]* | *[À compléter par les étudiants]* | *[À compléter par les étudiants]* |
+- identifier les tendances,
+- comprendre les relations entre les variables,
+- détecter les corrélations,
+- et observer les comportements du dataset.
 
-## Principes de Rigueur et Responsabilité
+Dans cette partie, plusieurs visualisations sont réalisées :
 
-1. **Responsabilité intellectuelle** : L'équipe assume l'entière responsabilité des analyses, des choix de modèles et des conclusions présentées dans ce rapport.
-2. **Lutte contre les hallucinations** : Chaque suggestion technique a fait l'objet d'une validation empirique.
-3. **Protection des données** : Aucun jeu de données confidentiel ou sensible n'a été soumis à des modèles tiers en ligne.
+- histogrammes,
+- scatterplots,
+- heatmaps,
+- boxplots,
+- bubble charts.
+
+{{< include ../build/notebooks/03_visualization.qmd >}}
+
 
 ---
 
-# Bibliographie {.unnumbered}
+# Modélisation Machine Learning
 
-::: {#refs}
-:::
+L’objectif principal de cette étape est de construire un modèle capable de prédire automatiquement le prix des maisons.
+
+Pour cela, plusieurs variables importantes sont sélectionnées :
+
+- la surface habitable,
+- la qualité générale,
+- le nombre de garages,
+- la taille du sous-sol,
+- l’année de construction.
+
+Les données sont ensuite séparées en :
+
+- jeu d’entraînement (train set),
+- jeu de test (test set).
+
+Cette séparation permet d’évaluer les performances du modèle sur des données qu’il n’a jamais vues auparavant.
+
+Deux modèles principaux sont utilisés :
+
+- la Régression Linéaire,
+- la Random Forest.
+
+{{< include ../build/notebooks/04_modeling.qmd >}}
+
+---
+
+# Feature Engineering
+
+Le Feature Engineering consiste à créer de nouvelles variables afin d’améliorer les performances des modèles de Machine Learning.
+
+Cette étape est très importante car elle permet de fournir des informations plus pertinentes au modèle.
+
+Plusieurs nouvelles variables ont été créées :
+
+- **TotalSF** : surface totale de la maison,
+- **HouseAge** : âge de la maison,
+- **QualityScore** : score global de qualité,
+- **GarageScore** : score du garage.
+
+Ces nouvelles variables enrichissent considérablement l’analyse.
+
+{{< include ../build/notebooks/05_feature_engineering.qmd >}}
+
+---
+
+# Comparaison des Modèles
+
+Dans cette partie, plusieurs modèles de Machine Learning sont comparés afin d’identifier celui qui offre les meilleures performances.
+
+Les modèles testés sont :
+
+- Linear Regression,
+- Decision Tree,
+- Random Forest.
+
+Les performances sont évaluées à l’aide des métriques suivantes :
+
+- MAE (Mean Absolute Error),
+- RMSE (Root Mean Squared Error),
+- R² Score.
+
+L’objectif est de sélectionner le modèle le plus précis et le plus robuste.
+
+{{< include ../build/notebooks/06_model_comparison.qmd >}}
+
+---
+
+# Optimisation des Hyperparamètres
+
+Après avoir identifié le meilleur modèle, une phase d’optimisation est réalisée.
+
+Cette étape utilise :
+
+**GridSearchCV**
+
+L’objectif est de tester automatiquement plusieurs combinaisons de paramètres afin d’améliorer les performances du modèle Random Forest.
+
+Les paramètres optimisés incluent notamment :
+
+- le nombre d’arbres (`n_estimators`),
+- la profondeur maximale (`max_depth`),
+- le nombre minimal d’échantillons.
+
+Cette optimisation permet d’obtenir un modèle plus performant et plus stable.
+
+{{< include ../build/notebooks/07_hyperparameter_tuning.qmd >}}
+
+---
+
+# Explicabilité du Modèle (Explainable AI)
+
+Dans les projets de Machine Learning, il est important de comprendre pourquoi un modèle prend certaines décisions.
+
+Pour cela, nous utilisons :
+
+- l’importance des variables,
+- ainsi que la bibliothèque SHAP.
+
+SHAP permet de :
+
+- visualiser l’influence de chaque variable,
+- comprendre les prédictions,
+- interpréter les résultats du modèle.
+
+Cette étape améliore fortement la transparence du modèle.
+
+{{< include ../build/notebooks/08_model_explainability.qmd >}}
+
+---
+
+# Conclusion
+
+Ce projet a permis de construire un pipeline complet de Data Science appliqué à la prédiction des prix immobiliers.
+
+Plusieurs étapes importantes ont été réalisées :
+
+- chargement des données,
+- nettoyage,
+- analyse exploratoire,
+- visualisation,
+- feature engineering,
+- modélisation,
+- optimisation,
+- explicabilité.
+
+Les résultats montrent que le modèle :
+
+**Random Forest**
+
+offre les meilleures performances pour ce problème de régression.
+
+Le projet démontre également l’importance :
+
+- de la qualité des données,
+- du choix des variables,
+- et de l’interprétation des modèles.
+
+Enfin, plusieurs améliorations futures pourraient être envisagées :
+
+- ajout de nouvelles données,
+- test de modèles plus avancés,
+- déploiement sous forme d’application web,
+- ou intégration en temps réel dans des plateformes immobilières.
+
+---
+
+# Utilisation de l’Intelligence Artificielle
+
+Dans ce projet, des outils d’intelligence artificielle générative ont été utilisés afin d’assister certaines étapes du développement.
+
+Ces outils ont permis :
+
+- d’obtenir de l’aide sur certaines erreurs techniques,
+- de mieux structurer le pipeline,
+- d’améliorer la documentation,
+- et de faciliter l’apprentissage.
+
+Cependant :
+
+- toutes les analyses,
+- tous les choix de modèles,
+- ainsi que l’interprétation des résultats
+
+ont été vérifiés, compris et validés manuellement.
+
+L’intégralité de la responsabilité intellectuelle du projet reste celle de l’auteur.
+
+---
+
+# Bibliographie
+
+- Documentation officielle Scikit-learn
+- Documentation Pandas
+- Documentation SHAP
+- Dataset Kaggle — House Prices Advanced Regression Techniques
