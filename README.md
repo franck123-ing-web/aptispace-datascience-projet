@@ -253,7 +253,7 @@ Ce dataset contient des données réelles de ventes immobilières aux États-Uni
 
 # 👨‍💻 Auteur
 
-- Franck Joel
+- Franck Joel Nzokou
 
 ---
 
